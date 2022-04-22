@@ -1,4 +1,4 @@
-# MyJBC
+# MyIron
 
 ### Goal
 To have a soldering station.
