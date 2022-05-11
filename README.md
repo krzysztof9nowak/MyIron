@@ -7,7 +7,7 @@ To have a soldering station.
 
 - components can be easily and cheaply sourced in 2022
 - support C210 and C245 tips with JBC connector
-- >= 130W @ 24V
+- 130W @ 24V
 - display of current temperature, set temperature and power bar
 - PID control without overshoots
 - easy changing of temperature + 2 presets
@@ -23,11 +23,19 @@ To have a soldering station.
 	- ESP32 - 3USD, seems overkill, but okay
 	- STM32 - unavailable or extremly pricy
 	- AVR - also pricy
-- current measurment
-	- high side
-	- low side
-	- custom current op-amp (INA180)
-	- basic rail-to-rail op-amp
+- high side current measurment 
+$$I = \cfrac{130W}{24V} \approx 5.4A$$
+, so assuming $I_{max}=10A$ 
+$$R_{sense} = 10m \Omega$$
+$$U_{sense} = 100mV$$ 
+$$U_{ADC}=5V$$
+$$G = 50$$
+INA180-A2 (absolute max $26V$, accuracy 1%, CMRR min 84dB, typ 100dB, 210kHz bandwidth, 5V supply)
+
+Calculating CMRR for an opamp circuit:
+$\cfrac{A_{diff}}{A_{cm}} \approx \cfrac{1 + G}{2 \Delta}$
+, where $\Delta$ is tolerance of resistors. Unviable with 1% resistors...
+
 - PWM switching
 	- low side - imposible, due to the required grounding of the tip
 	- high side
